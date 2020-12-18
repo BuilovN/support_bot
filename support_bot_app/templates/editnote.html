@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="pageContent">
+    <main role="main">
+        <form action="/note/{{ note.id }}/edit" method="post">
+         <ul>
+          <li>
+            <label for="title">Title:</label>
+            <input type="text" id="title" value="{{ note.title }}" name="title" />
+          </li>
+          <li>
+            <label for="text">Text:</label>
+            <textarea id="text" name="text">{{ note.text }}</textarea>
+          </li>
+          <li class="button">
+            <button type="submit">Edit</button>
+          </li>
+         </ul>
+        </form>
+    </main>
+</section>
+{% endblock %}

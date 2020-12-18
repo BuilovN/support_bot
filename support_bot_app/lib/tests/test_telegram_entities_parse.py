@@ -32,37 +32,37 @@ class TestParsingTelegramObject(unittest.TestCase):
         self.update = json.loads(request)
 
     def test_chat_parser(self):
-        correct_chat = Chat(342140103,
-                    "private",
-                    "Никита",
-                    "Буйлов",
-                    "builovn")
+        correct_chat = ChatEntity(342140103,
+                                  "private",
+                                  "Никита",
+                                  "Буйлов",
+                                  "builovn")
         test_chat = parse_chat(self.update["message"]["chat"])
         self.assertEqual(correct_chat, test_chat)
 
     def test_message_parser(self):
-        chat = Chat(342140103,
-                    "private",
-                    "Никита",
-                    "Буйлов",
-                    "builovn")
-        correct_message = Message(2,
-                          1606261401,
-                          chat,
-                          "yo")
+        chat = ChatEntity(342140103,
+                          "private",
+                          "Никита",
+                          "Буйлов",
+                          "builovn")
+        correct_message = MessageEntity(2,
+                                        1606261401,
+                                        chat,
+                                        "yo")
         test_message = parse_message(self.update["message"])
         self.assertEqual(test_message, correct_message)
 
     def test_update_parser(self):
-        chat = Chat(342140103,
-                    "private",
-                    "Никита",
-                    "Буйлов",
-                    "builovn")
-        message = Message(2,
-                          1606261401,
-                          chat,
+        chat = ChatEntity(342140103,
+                          "private",
+                          "Никита",
+                          "Буйлов",
+                          "builovn")
+        message = MessageEntity(2,
+                                1606261401,
+                                chat,
                           "yo")
-        correct_update = Update(self.update["update_id"], message)
+        correct_update = UpdateEntity(self.update["update_id"], message)
         test_update = parse_update(self.update)
         self.assertEqual(correct_update, test_update)

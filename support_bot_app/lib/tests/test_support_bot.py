@@ -3,7 +3,7 @@ import json
 from django.test import TestCase
 from support_bot_app.lib.bot.support_bot import SupportBot
 from support_bot_app.models import Message
-
+from datetime import datetime as dt
 
 class TestSupportBot(TestCase):
     def setUp(self):
@@ -34,13 +34,15 @@ class TestSupportBot(TestCase):
 
     def test_parse_json_request_to_model_message(self):
         telegram_message_entity = self.update["message"]
-        correct_message_model = Message(telegram_message_entity["text"],
-                                        telegram_message_entity["chat"]["id"],
-                                        telegram_message_entity["chat"]["username"],
-                                        telegram_message_entity["chat"]["first_name"],
-                                        telegram_message_entity["chat"]["last_name"],
-                                        telegram_message_entity["date"],
+        correct_message_model = Message(text=telegram_message_entity["text"],
+                                        telegram_id=telegram_message_entity["chat"]["id"],
+                                        username=telegram_message_entity["chat"]["username"],
+                                        first_name=telegram_message_entity["chat"]["first_name"],
+                                        last_name=telegram_message_entity["chat"]["last_name"],
+                                        date=dt.fromtimestamp(telegram_message_entity["date"]),
                                         is_reply=False,
                                         checked=False)
         test_message_model = SupportBot.parse_update_to_message_model(self.update)
+        print(test_message_model.date)
+        print(correct_message_model.date)
         self.assertEqual(correct_message_model, test_message_model)

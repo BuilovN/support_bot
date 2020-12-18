@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MegaLine</title>
+    <link rel="stylesheet" href={%static 'style.css'%}>
+</head>
+
+<body>
+    {% block header %}
+	<header>
+		<div id="logo"><img src={%static 'logo.png' %}>MegaLine</div>
+		<nav>
+			<ul>
+				<li><a href="/">All appeals</a>
+{#				<li><a href="/add_note">Add note</a>#}
+{#                <li><a href="/logout">Logout</a>#}
+			</ul>
+		</nav>
+	</header>
+    {% endblock %}
+    {% block content %}{% endblock %}
+</body>

@@ -6,7 +6,7 @@ def parse_update(update: dict):
     try:
         update_id = update["update_id"]
         message = parse_message(update["message"])
-        return Update(update_id, message)
+        return UpdateEntity(update_id, message)
     except KeyError as e:
         raise e
 
@@ -17,7 +17,7 @@ def parse_message(message: dict):
         date = message["date"]
         chat = parse_chat(message["chat"])
         text = message["text"]
-        return Message(message_id, date, chat, text)
+        return MessageEntity(message_id, date, chat, text)
     except KeyError as e:
         raise e
 
@@ -29,6 +29,6 @@ def parse_chat(chat: dict):
         first_name = chat["first_name"]
         last_name = chat["last_name"]
         username = chat["username"]
-        return Chat(id, type, first_name, last_name, username)
+        return ChatEntity(id, type, first_name, last_name, username)
     except KeyError as e:
         raise e

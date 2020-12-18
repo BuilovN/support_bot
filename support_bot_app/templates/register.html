@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <header>
+		<div id="logo"><img src="/support_bot_app/static/logo.png">My&nbsp;notes</div>
+		<nav>
+			<ul>
+				<li><a href="/login">Login</a>
+				<li><a href="/register">Register</a>
+			</ul>
+		</nav>
+	</header>
+{% endblock %}
+
+{% block content %}
+<section id="pageContent">
+    <main role="main">
+        <form action="/register" method="post">
+         <ul>
+          <li>
+            <label for="login">Login:</label>
+            <input type="text" id="login" name="login" />
+          </li>
+          <li>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" />
+          </li>
+          <li class="button">
+            <button type="submit">Register</button>
+          </li>
+         </ul>
+        </form>
+    </main>
+</section>
+{% endblock %}
