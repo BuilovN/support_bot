@@ -8,7 +8,7 @@
                 {% if message.is_reply %}
                     <h2> Operator </h2>
                 {% else %}
-                    <h2> {{ message.username }} </h2>
+                    <h2 style="color:orangered"> {{ username }} </h2>
                 {% endif %}
                 <p>{{ message.text }}</p>
                 <hr>
@@ -16,7 +16,7 @@
             </article>
             {% endfor %}
             <form action="/dialog/{{ chat_id }}/send" method="post">
-            {% csrf_token %}  }
+            {% csrf_token %}
             <ul>
                 <li>
                     <label for="text">Text:</label>

@@ -8,19 +8,22 @@
 		<main role="main">
             {% for message in messages %}
                 <article>
+                {% if message.checked %}
                     <h2>{{ message.username }}</h2>
-                    <p>{{ message.last_date }}
+                {% else %}
+                    <h2 style="color:orangered">{{ message.username }}</h2>
+                {% endif%}
+                    <p>{{ message.date }}
                     <a href="/dialog/{{ message.telegram_id }}">View</a>
                 </article>
         {% endfor %}
         <div class="pagination">
         <a href="/?page=1">&laquo;</a>
-        {% for element in paginator_dictionary %}
+        {% for element in pagination_list %}
           <a href="/?page={{ element }}" {% if element == page %} class="active" {% endif %}>{{ element }}</a>
         {% endfor %}
           <a href="/?page={{ pages_count }}">&raquo;</a>
           </div>
         </main>
     </section>
-
 {% endblock %}
