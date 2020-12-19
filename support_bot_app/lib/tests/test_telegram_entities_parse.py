@@ -62,7 +62,7 @@ class TestParsingTelegramObject(unittest.TestCase):
         message = MessageEntity(2,
                                 1606261401,
                                 chat,
-                          "yo")
+                                "yo")
         correct_update = UpdateEntity(self.update["update_id"], message)
         test_update = parse_update(self.update)
         self.assertEqual(correct_update, test_update)
