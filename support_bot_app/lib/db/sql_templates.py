@@ -1,0 +1,15 @@
+def get_joined_consumers_to_messages_last_message():
+    return ('select  m.id,'
+            '        max(date) as date,'
+            '        m.telegram_id,'
+            '        c.username,'
+            '        (select  checked'
+            '           from  support_bot_app_message'
+            '           where telegram_id=m.telegram_id'
+            '           order by date DESC, id DESC'
+            '           limit 1) as checked'
+            '  from  support_bot_app_message m'
+            '  join  support_bot_app_customer c'
+            '    on  m.telegram_id = c.telegram_id'
+            '  group by m.telegram_id'
+            '  order by date DESC')
